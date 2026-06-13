@@ -598,6 +598,42 @@ await authClient.signOut();
 
 ---
 
+# Step 18: Deploying to vercel
+
+Available features:
+
+- Vercel Configuration
+- Environment Variables
+
+vercel.json:
+
+```ts
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+```
+
+turbo.json:
+
+```ts
+{
+  "globalEnv": [
+    "CORS_ORIGIN",
+    "DATABASE_URL",
+    "VITE_API_URL",
+    "BETTER_AUTH_SECRET",
+    "BETTER_AUTH_URL"
+  ]
+}
+```
+
+---
+
 # Summary
 
 This monorepo architecture provides:
@@ -613,6 +649,7 @@ This monorepo architecture provides:
 - ✅ Admin role management
 - ✅ End-to-end type safety
 - ✅ Production-ready structure
+- ✅ Vercel deployment ready
 
 ## License
 

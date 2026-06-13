@@ -15,7 +15,6 @@ import './App.css';
 import { hc, type InferResponseType } from 'hono/client';
 // kiểu dữ liệu từ backend
 import type { AppTypes } from '@repo/api';
-// import { authClient } from './auth-client';
 // lấy kiểu trả về từ response của backend
 type UsersResponse = InferResponseType<typeof client.api.users.$get>;
 // khai báo hono RPC
@@ -68,16 +67,17 @@ function App() {
 
   const handleSignIn = async () => {
     await authClient.signIn.email({ email, password });
-    if (session) {
-      setLogged(true);
-    }
   };
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     sayWelcome();
     getUsers();
-  }, []);
+
+    if (session) {
+      setLogged(true);
+    }
+  }, [session]);
 
   if (isPending) {
     return <section id='center'>Loading...</section>;
